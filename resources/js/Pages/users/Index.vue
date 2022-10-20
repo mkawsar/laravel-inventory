@@ -1,6 +1,12 @@
 <template>
     <Head title="Users"/>
-    <h1 class="text-3xl mb-6">Users</h1>
+    <div class="flex justify-between mb-6">
+        <div class="flex items-center">
+            <h1 class="text-3xl">Users</h1>
+            <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
+        </div>
+        <input type="text" placeholder="Search..." class="border px-2 rounded-lg" v-model="search">
+    </div>
     <div class="flex flex-col">
         <div class="-my-2 overflow-auto-2 sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -32,9 +38,21 @@
 </template>
 
 <script setup>
-import Paginator from "../Shared/Paginator";
+import Paginator from "../../Shared/Paginator";
+import {Inertia} from '@inertiajs/inertia';
+import {ref, watch} from "vue";
+import debounce from 'lodash/debounce'
 
-defineProps({
-    users: Object
-})
+let props = defineProps({
+    users: Object,
+    filter: Object
+});
+
+let search = ref(props.filter.search);
+
+watch(search, debounce(function(value) {
+    Inertia.get('/users', {search: value}, {
+        preserveState: true
+    })
+}, 500));
 </script>
