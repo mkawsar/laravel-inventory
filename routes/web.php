@@ -12,9 +12,7 @@ Route::post('login', [AuthController::class, 'authenticate']);
 Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
-        return Inertia::render('Home', [
-            'username' => 'John Doe'
-        ]);
+        return Inertia::render('Home');
     });
 
     Route::get('/users', function () {
@@ -53,7 +51,5 @@ Route::middleware('auth')->group(function () {
     });
 
 
-    Route::post('/logout', function () {
-        dd(request('foo'));
-    });
+    Route::post('/logout', [AuthController::class, 'destroy']);
 });

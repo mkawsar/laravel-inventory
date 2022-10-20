@@ -17,9 +17,7 @@
                 </Link>
             </li>
             <li>
-                <Link href="/logout" method="post" as="button" :data="{foo: 'bar'}"
-                      class="text-black hover:underline">Logout
-                </Link>
+                <Link href="/logout" method="post" as="button" class="text-black hover:underline">Logout</Link>
             </li>
         </ul>
     </nav>
