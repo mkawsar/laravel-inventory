@@ -10,7 +10,11 @@ class AuthController extends Controller
 {
     public function login(): object
     {
-        return Inertia::render('auth/Login');
+        if (!Auth::check()) {
+            return Inertia::render('auth/Login');
+        } else {
+            return redirect()->intended();
+        }
     }
 
     public function authenticate(Request $request): object
