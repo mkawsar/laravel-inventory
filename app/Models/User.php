@@ -44,8 +44,46 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function role(): object
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
+
+    public function hasRole($roles): bool
+    {
+        $this->have_role = $this->getUserRole();
+
+        // Check if the user is a root account
+        if ($this->have_role->name == 'Root') {
+            return true;
+        }
+
+        if (is_array($roles)) {
+            foreach ($roles as $need_role) {
+                if ($this->checkIfUserHasRole($need_role)) {
+                    return true;
+                }
+            }
+        } else {
+            return $this->checkIfUserHasRole($roles);
+        }
+        return false;
+    }
+
+    private function getUserRole()
+    {
+        return $this->role()->getResults();
+    }
+
+    private function checkIfUserHasRole($need_role): bool
+    {
+        return (strtolower($need_role) == strtolower($this->have_role->name)) ? true : false;
     }
 }

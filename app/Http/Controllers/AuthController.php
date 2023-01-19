@@ -13,31 +13,29 @@ class AuthController extends Controller
         if (!Auth::check()) {
             return Inertia::render('auth/Login');
         } else {
-            return redirect()->intended();
+            return redirect()->route('user');
         }
     }
 
-    public function authenticate(Request $request): object
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, true)) {
             $request->session()->regenerate();
 
-            return redirect()->intended();
+            return redirect()->route('user')->with('success', "You're login successfully!");
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('error', 'The provided credentials do not match our records.');
     }
 
-    public function destroy(): object
+    public function logout(): object
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Your current session is logout successfully!');
     }
 }

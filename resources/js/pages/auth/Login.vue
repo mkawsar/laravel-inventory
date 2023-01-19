@@ -101,12 +101,18 @@ export default {
     },
     methods: {
         handleLoginFormSubmit() {
-            this.form.post(this.$route('login'));
+            this.form.post(this.$route('authenticate'), {
+                onSuccess: (res) => {
+                    if (res.props.flash.error !== null) {
+                        this.toastr.error(res.props.flash.error);
+                    } else {
+                        this.toastr.success(res.props.flash.success);
+                    }
+                },
+                onError:() => this.toastr.error('Something, went wrong!')
+            });
         }
     },
-    mounted() {
-        this.toastr.success('Hello world')
-    }
 }
 </script>
 

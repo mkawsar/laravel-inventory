@@ -22,21 +22,21 @@ class UsersTableSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Admin Example';
         $admin->email = 'admin@example.com';
-        $admin->password = bcrypt('123456');
+        $admin->password = 123456;
         $admin->role_id = 1;
         $admin->save();
 
         $maintainer = new User();
         $maintainer->name = 'Maintainer Example';
         $maintainer->email = 'maintainer@example.com';
-        $maintainer->password = bcrypt('123456');
+        $maintainer->password = 123456;
         $maintainer->role_id = 2;
         $maintainer->save();
 
         $keeper = new User();
         $keeper->name = 'Keeper Example';
         $keeper->email = 'keeper@example.com';
-        $keeper->password = bcrypt('123456');
+        $keeper->password = 123456;
         $keeper->role_id = 3;
         $keeper->save();
     }

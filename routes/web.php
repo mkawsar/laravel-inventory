@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
                 ]),
             'filter' => Request::only(['search'])
         ]);
-    });
+    })->name('user');
 
     Route::get('users/create', function () {
         return Inertia::render('users/Create');
