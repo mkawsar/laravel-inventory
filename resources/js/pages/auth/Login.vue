@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import {useToastr} from '@/services/toastr';
 import {useForm} from "@inertiajs/inertia-vue3";
 export default {
     name: "Login",
@@ -95,12 +96,16 @@ export default {
             email: '',
             password: ''
         });
-        return {form}
+        const toastr = useToastr();
+        return {form, toastr}
     },
     methods: {
         handleLoginFormSubmit() {
             this.form.post(this.$route('login'));
         }
+    },
+    mounted() {
+        this.toastr.success('Hello world')
     }
 }
 </script>
