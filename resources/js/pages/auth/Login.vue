@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="mt-10">
-                <form method="post" @submit.prevent="submit">
+                <form method="post" @submit.prevent="handleLoginFormSubmit">
                     <div class="flex flex-col mb-6">
                         <label for="email" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">E-Mail Address:</label>
                         <div class="relative">
@@ -86,22 +86,22 @@
 </template>
 
 <script>
+import {useForm} from "@inertiajs/inertia-vue3";
 export default {
     name: "Login",
-    layout: null
-
-}
-</script>
-<script setup>
-import {useForm} from "@inertiajs/inertia-vue3";
-
-let form = useForm({
-    email: '',
-    password: ''
-});
-
-let submit = () => {
-    form.post('/login');
+    layout: null,
+    setup() {
+        let form = useForm({
+            email: '',
+            password: ''
+        });
+        return {form}
+    },
+    methods: {
+        handleLoginFormSubmit() {
+            this.form.post(this.$route('login'));
+        }
+    }
 }
 </script>
 
