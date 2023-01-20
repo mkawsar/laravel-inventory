@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {createApp, h} from "vue";
 import {createInertiaApp, Head, Link} from "@inertiajs/inertia-vue3";
 import {InertiaProgress} from "@inertiajs/progress";
@@ -16,6 +17,7 @@ createInertiaApp({
         let app = createApp({render: () => h(App, props)});
         app.config.globalProperties.$route = window.route;
         app.config.globalProperties.$route = window.route;
+        app.config.globalProperties.$moment = moment;
         app
             .component('Link', Link)
             .component('Head', Head)
