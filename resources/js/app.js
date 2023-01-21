@@ -28,4 +28,11 @@ createInertiaApp({
     title: title => `My App - ${title}`
 })
 
-InertiaProgress.init();
+InertiaProgress.init({
+    // The delay after which the progress bar will
+    // appear during navigation, in milliseconds.
+    delay: 250,
+
+    // The color of the progress bar.
+    color: '#dc0f56',
+})

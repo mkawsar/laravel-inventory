@@ -13,11 +13,11 @@ class AuthController extends Controller
         if (!Auth::check()) {
             return Inertia::render('auth/Login');
         } else {
-            return redirect()->route('user');
+            return redirect()->route('dashboard.index');
         }
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request): object
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -26,10 +26,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, true)) {
             $request->session()->regenerate();
-
-            return redirect()->route('user')->with('success', "You're login successfully!");
+            return redirect()->route('dashboard.index')->with('success', "You're login successfully!");
         }
-
         return back()->with('error', 'The provided credentials do not match our records.');
     }
 

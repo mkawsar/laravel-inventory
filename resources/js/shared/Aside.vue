@@ -14,7 +14,8 @@
                             <span class="ml-3">Dashboard</span>
                         </Link>
                     </li>
-                    <li :class="{'bg-gray-200 rounded-lg' : $page.props.menu === 'user'}">
+                    <li :class="{'bg-gray-200 rounded-lg' : $page.props.menu === 'user'}"
+                        v-if="$page.props.auth.user.role === 'admin'">
                         <Link :href="usersURL"
                               class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                             <svg
@@ -39,33 +40,20 @@
                             <span class="ml-3 flex-1 whitespace-nowrap">Products</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#"
-                           class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                            <svg
-                                class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="ml-3 flex-1 whitespace-nowrap">Sign In</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#"
-                           class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                            <svg
-                                class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="ml-3 flex-1 whitespace-nowrap">Sign Up</span>
-                        </a>
-                    </li>
                 </ul>
+            </div>
+            <div class="flex-shrink-0 p-2 border-t max-h-14">
+                <Link href="/logout" method="post" as="button"
+                    class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-red-100 border rounded-md focus:outline-none focus:ring">
+                    <span>
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                    </span>
+                    <span> Logout </span>
+                </Link>
             </div>
         </div>
     </div>
