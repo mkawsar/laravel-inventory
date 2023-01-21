@@ -8,10 +8,6 @@ use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', function () {
-        return Inertia::render('Home');
-    });
-
     Route::get('/users', function () {
         return Inertia::render('users/Index', [
             'users' => User::query()
