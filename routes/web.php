@@ -8,26 +8,6 @@ use Inertia\Inertia;
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/users', function () {
-        return Inertia::render('users/Index', [
-            'users' => User::query()
-                ->when(Request::input('search'), function ($query, $search) {
-                    $query->where('name', 'LIKE', "%{$search}%");
-                })
-                ->paginate(10)
-                ->withQueryString()
-                ->through(fn($user) => [
-                    'id' => $user->id,
-                    'name' => $user->name
-                ]),
-            'filter' => Request::only(['search'])
-        ]);
-    })->name('user');
-
-    Route::get('users/create', function () {
-        return Inertia::render('users/Create');
-    });
-
     Route::post('users', function () {
         $attributes = Request::validate([
             'name' => 'required',

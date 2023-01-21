@@ -9,6 +9,7 @@ class DashboardController extends Controller
 {
     public function index(): object
     {
+        session()->put('menu', 'dashboard');
         return Inertia::render('Home');
     }
 }
