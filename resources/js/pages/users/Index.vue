@@ -1,40 +1,5 @@
 <template>
     <Head title="Users"/>
-    <!--    <div class="flex justify-between mb-6">
-            <div class="flex items-center">
-                <h1 class="text-3xl">Users</h1>
-                <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
-            </div>
-            <input type="text" placeholder="Search..." class="border px-2 rounded-lg" v-model="search">
-        </div>
-        <div class="flex flex-col">
-            <div class="-my-2 overflow-auto-2 sm:-mx-6 lg:-mx-8">
-                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="(user, index) in users.data" :key="index">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div>
-                                            <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <Link :href="`/users/${user.id}/edit`" class="text-indigo-600 hover:text-indigo-900">
-                                        Edit
-                                    </Link>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    <!-- component -->
-    <!-- This is an example component -->
     <div class="mx-auto">
         <div class="relative">
             <div class="p-4">
@@ -51,6 +16,9 @@
                     <input type="text" id="table-search" v-model="search"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Search for items">
+                </div>
+                <div class="relative text-end">
+                    <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
                 </div>
             </div>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
