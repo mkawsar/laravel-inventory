@@ -18,7 +18,7 @@
                            placeholder="Search for items">
                 </div>
                 <div class="relative text-end">
-                    <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
+                    <Link :href="$route('users.create')" class="shadow w-32 border-gray-400 border-2 rounded-full focus:outline-none focus:border-gray-600 px-4 py-2 text-gray-600 hover:bg-gray-600 hover:text-white">New User</Link>
                 </div>
             </div>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
