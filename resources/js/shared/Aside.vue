@@ -4,7 +4,7 @@
             <div class="flex-1 px-3 bg-white divide-y space-y-1">
                 <ul class="space-y-2 pb-2">
                     <li :class="{'bg-gray-200 rounded-lg' : $page.props.menu === 'dashboard'}">
-                        <Link :href="dashboardURL"
+                        <Link :href="$route('dashboard.index')"
                               class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                             <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
                                  fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +16,7 @@
                     </li>
                     <li :class="{'bg-gray-200 rounded-lg' : $page.props.menu === 'user'}"
                         v-if="$page.props.auth.user.role === 'admin'">
-                        <Link :href="usersURL"
+                        <Link :href="$route('users.index')"
                               class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                             <svg
                                 class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
@@ -27,8 +27,8 @@
                             <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
                         </Link>
                     </li>
-                    <li>
-                        <a href="#"
+                    <li :class="{'bg-gray-200 rounded-lg' : $page.props.menu === 'product'}">
+                        <Link :href="$route('product.index')"
                            class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                             <svg
                                 class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
@@ -38,7 +38,7 @@
                                       clip-rule="evenodd"></path>
                             </svg>
                             <span class="ml-3 flex-1 whitespace-nowrap">Products</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
@@ -62,12 +62,6 @@
 <script>
 export default {
     name: "Aside",
-    data() {
-        return {
-            dashboardURL: this.$route('dashboard.index'),
-            usersURL: this.$route('users.index'),
-        };
-    }
 }
 </script>
 
